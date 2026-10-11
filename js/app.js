@@ -810,7 +810,7 @@ const mn=$("#main");
 mn.addEventListener("drop",e=>{if(view!=="trash")addFiles([...e.dataTransfer.files])});
 
 /* ---------- start ---------- */
-document.querySelectorAll("img.colg").forEach(i=>i.src=LOGO);
+applyLogo();
 document.querySelectorAll("img.mkL").forEach(i=>i.src=MARK_L);document.querySelectorAll("img.mkS").forEach(i=>i.src=MARK_S);
 {const fi=document.querySelector("link[rel=icon]");if(fi)fi.href=MARK_F}
 document.documentElement.lang=lang;document.documentElement.dir=lang==="ar"?"rtl":"ltr";document.title=t().title;
