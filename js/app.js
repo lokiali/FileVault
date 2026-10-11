@@ -24,7 +24,7 @@ function authShell(inner,again){
   const T=t();
   const bt=$("#boot");if(bt)bt.hidden=true;
   $("#app").hidden=true;$("#auth").hidden=false;
-  $("#auth").innerHTML=`<div class="card"><div class="cob"><span class="pill"><img src="${LOGO}" alt=""></span><b class="cn">${T.co}</b></div><img class="lg" src="${MARK_S}" alt=""><h1>${T.t1} <b>${T.t2}</b></h1>${inner}<button class="lnk" id="a_lang">${T.lang}</button><p class="foot">By Eng.Ali nadhim waheed for Sadiq Nadhim</p></div>`;
+  $("#auth").innerHTML=`<div class="card"><div class="cob"><span class="pill"><img src="${curLogo()}" alt=""></span><b class="cn">${T.co}</b></div><img class="lg" src="${MARK_S}" alt=""><h1>${T.t1} <b>${T.t2}</b></h1>${inner}<button class="lnk" id="a_lang">${T.lang}</button><p class="foot">By Eng.Ali nadhim waheed for Sadiq Nadhim</p></div>`;
   $("#a_lang").onclick=()=>{lang=lang==="ar"?"en":"ar";ls("fv_lang",lang);setLang();again()};
 }
 function showAuth(msg,mode="login"){
@@ -162,11 +162,14 @@ function dlg(msg,o={}){
 const askConfirm=(m,danger=true)=>dlg(m,{ok:t().yesB,cancel:t().cancel,danger});
 const notify=m=>dlg(m,{ok:t().okB});
 const fail=e=>notify(t().errS+"\n("+errMsg(e)+")");
+const curLogo=()=>document.documentElement.dataset.theme==="light"?LOGO_L:LOGO;
+const applyLogo=()=>document.querySelectorAll("img.colg,.cob .pill img,#boot img").forEach(i=>i.src=curLogo());
 function setTheme(m){
   const L=m==="light";
   if(L)document.documentElement.dataset.theme="light";else document.documentElement.removeAttribute("data-theme");
   ls("fv_theme",L?"light":"dark");
   const mt=document.querySelector('meta[name="theme-color"]');if(mt)mt.content=L?"#F3F6FB":"#0F172A";
+  applyLogo();
 }
 const isLight=()=>document.documentElement.dataset.theme==="light";
 function skel(){
